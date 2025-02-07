@@ -197,14 +197,14 @@ isRouterReflect = true
 
 包名格式一般为：**域名反转+项目名+功能名**，以此**字节跳动**（域名：www.bytedance.com ）公司**抖音**项目为例，规则如下：
 
-* `core`：**com.bytedance.core.xxx**，如：`architecture`模块：com.bytedance.core.architecture
+* `core`：**com.bytedance.core.xxx**，如：com.bytedance.core.architecture
 * `douyin`：**com.bytedance.douyin.xxx**
   * `app`：com.bytedance.douyin
-  * `core`：com.bytedance.douyin.**core**.xxx，如：`architecture`模块：com.bytedance.douyin.core.architecture
-  * `feature`：com.bytedance.douyin.**feature**.xxx，如：`home`模块：com.bytedance.douyin.feature.home
+  * `core`：com.bytedance.douyin.**core**.xxx，如：com.bytedance.douyin.core.architecture
+  * `feature`：com.bytedance.douyin.**feature**.xxx，如：com.bytedance.douyin.feature.home
   * `shop`：com.bytedance.douyin.**shop**.xxx
-    * `core`：com.bytedance.douyin.**shop.core**.xxx，如：`data`模块：com.bytedance.douyin.shop.core.data
-    * `feature`：com.bytedance.douyin.**shop.feature**.xxx，如：`shop`模块：com.bytedance.douyin.shop.feature.shop
+    * `core`：com.bytedance.douyin.**shop.core**.xxx，如：com.bytedance.douyin.shop.core.data
+    * `feature`：com.bytedance.douyin.**shop.feature**.xxx，如：com.bytedance.douyin.shop.feature.shop
 * `xigua`：规则同上（抖音）
 
 
