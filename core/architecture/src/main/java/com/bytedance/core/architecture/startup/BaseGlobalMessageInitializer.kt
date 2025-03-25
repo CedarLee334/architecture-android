@@ -13,7 +13,7 @@ import com.bytedance.core.architecture.message.controller.DefaultMessageControll
  * @author zhangrq
  * createTime 2024/8/12 下午3:14
  */
-class BaseArchitectureInitializer : Initializer<Unit> {
+class BaseGlobalMessageInitializer : Initializer<Unit> {
 
     override fun create(context: Context) {
         // 初始化全局消息

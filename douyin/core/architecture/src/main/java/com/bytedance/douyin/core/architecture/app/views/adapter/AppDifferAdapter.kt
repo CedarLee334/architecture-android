@@ -11,7 +11,7 @@ import com.chad.library.adapter4.BaseQuickAdapter
 
 /**
  * 描述：
- * 说明：不要调用非[submitList]，其他的修改数据方法。
+ * 说明：不要调用非[submitList]，其它的修改数据方法。
  *
  * @author zhangrq
  * createTime 2024/2/29 下午5:05

@@ -72,7 +72,7 @@ class FakeNetworkShopDataSource @Inject constructor(
     }
 
     private suspend fun mockApiRequest() {
-        delay(2000)
+//        delay(2000)
         shopApi.getTime().toRuleSuccessData()
     }
 

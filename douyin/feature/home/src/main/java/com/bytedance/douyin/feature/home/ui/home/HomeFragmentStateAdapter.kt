@@ -38,7 +38,7 @@ class HomeFragmentStateAdapter(fragment: Fragment, val context: Context) :
                 -> Router.Video.createVideoFragment()
             // 商城
             HomeTabType.SHOP -> Router.Shop.Shop.createShopFragment()
-            // 其他
+            // 其它
             HomeTabType.EXPERIENCE, HomeTabType.GROUP_BUYING, HomeTabType.CHOICE ->
                 AppTestFragment.newInstance(item.titleResId)
         }

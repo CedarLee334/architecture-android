@@ -44,7 +44,7 @@ interface DefaultStateViewManager : StateViewManager {
             layoutParams.endToEnd = stateViewReplaceViewId
             layoutParams
         } else {
-            // 其他，使用要替换的View。
+            // 其它，使用要替换的View。
             stateViewReplaceView.layoutParams
         }
     }

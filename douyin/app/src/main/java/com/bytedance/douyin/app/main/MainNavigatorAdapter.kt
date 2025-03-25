@@ -56,7 +56,7 @@ class MainNavigatorAdapter(
         }
         pagerTitleView.setContentView(binding.root)
 //        pagerTitleView.onPagerTitleChangeListener
-        // 设置颜色，在此设置是为了解决跳转到后台或其他页面，然后再回来，会重新设置Adapter的数据，内部调用了notifyDataSetChanged()，所以此布局会重新创建一次。
+        // 设置颜色，在此设置是为了解决跳转到后台或其它页面，然后再回来，会重新设置Adapter的数据，内部调用了notifyDataSetChanged()，所以此布局会重新创建一次。
         pagerTitleView.setColor(isDarkFont, index == viewPager2.currentItem)
         // 点击
         pagerTitleView.setOnClickListener {
@@ -85,7 +85,7 @@ class MainNavigatorAdapter(
 
     private fun ViewBinding.onTabClickHandle(index: Int, item: MainTabsItem) {
         if (viewPager2.currentItem == index) {
-            // 在当前页面，做其他操作，如刷新、滚动到未读，实现功能由实现类自己控制。
+            // 在当前页面，做其它操作，如刷新、滚动到未读，实现功能由实现类自己控制。
             onTabClickAgainHandle(index)
         } else {
             // 不在当前页面，切换。
@@ -100,7 +100,7 @@ class MainNavigatorAdapter(
                 // 首页，不登录。
                 viewPager2.setCurrentItem(index, false)
             } else {
-                // 其他，需要登录
+                // 其它，需要登录
                 LoginManager.checkLogin(activity) {
                     viewPager2.setCurrentItem(index, false)
                 }

@@ -52,7 +52,7 @@ class ShopViewModel @Inject constructor(
                     }
                 })
             }
-            // 其他Item数据及其点击
+            // 其它Item数据及其点击
             ShopItemUiState(type = item.type, buttons = buttons, shop = item, addItem = {
                 requestAsyncOnlyHint {
                     shopRepository.addItem(item.id ?: 0)

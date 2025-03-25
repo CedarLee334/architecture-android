@@ -1,0 +1,54 @@
+plugins {
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
+}
+
+android {
+    namespace = "com.bytedance.demo"
+    compileSdk libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        applicationId "com.bytedance.demo"
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionCode libs.versions.versionCode.get().toInteger()
+        versionName libs.versions.versionName.get().toString()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility libs.versions.javaVersion.get().toInteger()
+        targetCompatibility libs.versions.javaVersion.get().toInteger()
+    }
+    kotlinOptions {
+        jvmTarget = libs.versions.javaVersion.get().toInteger()
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // ================================Test相关===================================
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    // ================================Google库相关===================================
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    // ================================Project项目相关===================================
+    // douyin-core
+    implementation(project(":douyin:core:architecture"))
+    implementation(project(":douyin:core:data"))
+    implementation(project(":douyin:core:designsystem"))
+}

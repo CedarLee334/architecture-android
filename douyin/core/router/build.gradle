@@ -21,7 +21,7 @@ android {
                         implementation(project(":douyin:core:test")) // 各种FakeRouter用
                     }
                 } else {
-                    // 其他，用Dagger实现。再判断是否包括商场。
+                    // 其它，用Dagger实现。再判断是否包括商场。
                     def routerDaggerShopSrcDir
                     if (isShopInclude.toBoolean()) {
                         // 包含商城，用Dagger实现。

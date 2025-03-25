@@ -35,7 +35,7 @@
     <string name="douyin_feature_login_login">登录</string>
     <string name="douyin_feature_login_complete">完成</string>
     <string name="douyin_feature_login_login_password">密码登录</string>
-    <string name="douyin_feature_login_login_other">其他方式登录</string>
+    <string name="douyin_feature_login_login_other">其它方式登录</string>
     <string name="douyin_feature_login_login_email_and_password">邮箱密码登录</string>
     <string name="douyin_feature_login_login_phone_number_and_password">手机号密码登录</string>
     <string name="douyin_feature_login_help_and_setup">帮助与设置</string>
