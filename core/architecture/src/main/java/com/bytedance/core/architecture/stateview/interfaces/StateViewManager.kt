@@ -36,5 +36,6 @@ interface StateViewManager {
     fun showErrorView(error: Throwable, retry: View.OnClickListener?)
     fun showEmptyView()
     fun showSuccess()
-    fun hideLoading(isHideLoadingView: Boolean = true)
+    fun hideLoading()
+    fun hideAll()
 }

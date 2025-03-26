@@ -39,8 +39,7 @@ class RetrievePasswordByPhoneNumberAndVerificationCodeFragment :
         }
         // 完成
         complete.setOnClickListener {
-            viewModel.complete()
-            uiStateNavigateInProgress = true
+            viewModel.complete { uiStateNavigateInProgress = true }
         }
     }
 

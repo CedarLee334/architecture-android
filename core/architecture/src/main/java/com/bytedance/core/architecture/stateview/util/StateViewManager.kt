@@ -36,18 +36,23 @@ fun DefaultStateViewManager.initLoadStateUiStateCollect(
 private fun DefaultStateViewManager.collect(
     uiState: LoadStateUiState?,
 ) {
-    when (uiState) {
-        is LoadStateUiState.Loading -> if (uiState.isShowLoading) showLoading(uiState.isLoadingDialog) else hideLoading()
-        is LoadStateUiState.Error -> if (uiState.isShowError) showErrorView(
-            uiState.error,
-            uiState.retry
-        ) else hideLoading()
+    uiState ?: return // 为空，不设置。
 
-        is LoadStateUiState.Empty -> if (uiState.isShowEmpty) showEmptyView() else hideLoading()
-        is LoadStateUiState.Success -> showSuccess()
-        null -> {} // 为空，默认效果，不设置。
+    // 设置是否展示StateView
+    if (uiState.isShowStateView) {
+        // 展示
+        when (uiState) {
+            is LoadStateUiState.Loading -> showLoading(uiState.isLoadingDialog)
+            is LoadStateUiState.Error -> showErrorView(uiState.error, uiState.retry)
+            is LoadStateUiState.Empty -> showEmptyView()
+            is LoadStateUiState.Success -> showSuccess()
+        }
+    } else {
+        // 不展示，隐藏所有（防止之前已经显示）。
+        hideAll()
     }
 
-    val isHideContent = uiState?.isHideContent ?: return // 为空，不设置。
-    getStateViewReplaceView().isInvisible = isHideContent
+    // 设置是否展示内容布局（如：列表RecyclerView）
+    val isShowContentLayout = uiState.isShowContentLayout ?: return // 为空，不设置。
+    getStateViewReplaceView().isInvisible = !isShowContentLayout
 }

@@ -45,9 +45,10 @@ class LoginByPhoneNumberAndVerificationCodeViewModel @Inject constructor(
         )
     }
 
-    fun verificationAndLogin() {
+    fun verificationAndLogin(requestStart: () -> Unit) {
         if (checkPhoneNumberValid() && checkAgreementChecked()) {
             // 检查成功
+            requestStart()
             requestAsync {
                 // 发送验证码
                 loginRepository.sendLoginPhoneNumberVerificationCode(phoneNumber.value.toString())

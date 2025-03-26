@@ -10,29 +10,33 @@ import com.bytedance.core.common.exception.RuleException
  * createTime 2024/12/8 下午5:22
  */
 sealed class LoadStateUiState(
-    val isHideContent: Boolean?,
+    // 是否展示内容布局（如：Error状态下，展示Error布局，不展示内容布局），为null代表不操作。
+    val isShowContentLayout: Boolean?,
+    // 是否展示StateView（如：Error状态下，不展示StateView-Error布局，展示提示）
+    val isShowStateView: Boolean,
 ) {
     class Loading(
-        isHideContent: Boolean?,
-        val isShowLoading: Boolean,
+        isShowContentLayout: Boolean?,
+        isShowStateView: Boolean,
         val isLoadingDialog: Boolean,
-    ) : LoadStateUiState(isHideContent)
+    ) : LoadStateUiState(isShowContentLayout, isShowStateView)
 
     class Error(
-        isHideContent: Boolean?,
-        val isShowError: Boolean,
+        isShowContentLayout: Boolean?,
+        isShowStateView: Boolean,
         val error: Throwable,
         val retry: View.OnClickListener?,
-    ) : LoadStateUiState(isHideContent)
+    ) : LoadStateUiState(isShowContentLayout, isShowStateView)
 
     class Empty(
-        isHideContent: Boolean?,
-        val isShowEmpty: Boolean,
-    ) : LoadStateUiState(isHideContent)
+        isShowContentLayout: Boolean?,
+        isShowStateView: Boolean,
+    ) : LoadStateUiState(isShowContentLayout, isShowStateView)
 
     class Success(
-        isHideContent: Boolean?,
-    ) : LoadStateUiState(isHideContent)
+        isShowContentLayout: Boolean?,
+        isShowStateView: Boolean,
+    ) : LoadStateUiState(isShowContentLayout, isShowStateView)
 }
 
 // 判断

@@ -57,7 +57,7 @@ class FakeNetworkShopDataSource @Inject constructor(
 
     override suspend fun addButtonItem(): NetworkShopButton {
         // 模拟Api请求
-        delay(2000)
+        mockApiRequest()
         return fakeShopButton(Random().nextInt(10000), "Add-Item")
     }
 
@@ -72,7 +72,7 @@ class FakeNetworkShopDataSource @Inject constructor(
     }
 
     private suspend fun mockApiRequest() {
-//        delay(2000)
+        delay(2000)
         shopApi.getTime().toRuleSuccessData()
     }
 

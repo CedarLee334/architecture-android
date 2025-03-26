@@ -56,8 +56,7 @@ class LoginByPhoneNumberAndVerificationCodeFragment :
         phoneNumber.doAfterTextChanged { viewModel.phoneNumberChanged(it.toString()) }
         // 验证并登录
         verificationAndLogin.setOnClickListener {
-            viewModel.verificationAndLogin()
-            uiStateNavigateInProgress = true
+            viewModel.verificationAndLogin { uiStateNavigateInProgress = true }
         }
         // 密码登录
         loginPassword.setOnClickListener { navigate(Directions.actionToLoginByPhoneNumberAndPassword()) }

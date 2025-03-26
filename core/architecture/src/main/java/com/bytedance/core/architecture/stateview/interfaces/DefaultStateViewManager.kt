@@ -52,7 +52,7 @@ interface DefaultStateViewManager : StateViewManager {
     override fun showLoading(isLoadingDialog: Boolean) {
         // 隐藏原来的Loading
         hideLoading()
-        // 显示
+        // 显示新的-Loading
         if (isLoadingDialog) {
             loadingDialog.value.showLoading()
         } else {
@@ -62,17 +62,19 @@ interface DefaultStateViewManager : StateViewManager {
     }
 
     override fun showErrorView(error: Throwable, retry: View.OnClickListener?) {
+        // 隐藏原来的Loading
+        hideLoading()
+        // 显示新的-Error
         setStateViewVisible(true)
         stateView.value.showError(error, retry)
-        // 结束，隐藏Loading。
-        hideLoading(isHideLoadingView = false)
     }
 
     override fun showEmptyView() {
+        // 隐藏原来的Loading
+        hideLoading()
+        // 显示新的-Empty
         setStateViewVisible(true)
         stateView.value.showEmpty()
-        // 结束，隐藏Loading。
-        hideLoading(isHideLoadingView = false)
     }
 
     override fun showSuccess() {
@@ -81,12 +83,26 @@ interface DefaultStateViewManager : StateViewManager {
     }
 
     /**
-     * 结束，隐藏Loading（LoadingDialog、LoadingView）。
-     * [isHideLoadingView]为是否隐藏LoadingView。
+     * 隐藏Loading（LoadingView、LoadingDialog）。
      */
-    override fun hideLoading(isHideLoadingView: Boolean) {
+    override fun hideLoading() {
         // 隐藏LoadingView（如果之前用过）
-        if (isHideLoadingView && stateView.isInitialized()) {
+        if (stateView.isInitialized()) {
+            setStateViewVisible(false)
+        }
+
+        // 隐藏loadingDialog（如果之前用过）
+        if (loadingDialog.isInitialized()) {
+            loadingDialog.value.hideLoading()
+        }
+    }
+
+    /**
+     * 隐藏所有（StateView、LoadingDialog）。
+     */
+    override fun hideAll() {
+        // 隐藏StateView（如果之前用过）
+        if (stateView.isInitialized()) {
             setStateViewVisible(false)
         }
 

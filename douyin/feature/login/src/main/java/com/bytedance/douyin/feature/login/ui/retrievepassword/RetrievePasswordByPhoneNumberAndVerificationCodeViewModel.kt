@@ -49,9 +49,10 @@ class RetrievePasswordByPhoneNumberAndVerificationCodeViewModel @Inject construc
     }
 
     // 完成
-    fun complete() {
+    fun complete(requestStart: () -> Unit) {
         if (checkVerificationCodeValid() && checkAgreementChecked()) {
             // 检查成功，请求异步获取数据。
+            requestStart()
             requestAsync {
                 // 找回密码
                 loginRepository.verifyRetrievePasswordByPhoneNumberAndVerificationCode(
