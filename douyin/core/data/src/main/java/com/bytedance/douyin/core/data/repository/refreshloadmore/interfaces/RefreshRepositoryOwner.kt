@@ -6,6 +6,6 @@ package com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces
  * @author zhangrq
  * createTime 2024/11/7 16:34
  */
-interface RefreshLoadMoreRepositoryOwner {
-    fun onRefreshLoadMoreRepository(): RefreshLoadMoreRepository<*>
+interface RefreshRepositoryOwner {
+    fun onRefreshRepository(): RefreshRepository<*>
 }

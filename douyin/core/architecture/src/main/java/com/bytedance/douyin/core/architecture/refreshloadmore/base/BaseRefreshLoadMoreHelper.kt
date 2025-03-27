@@ -14,8 +14,8 @@ import com.bytedance.douyin.core.architecture.refreshloadmore.FixBugHeaderAdapte
 import com.bytedance.douyin.core.architecture.refreshloadmore.MyDefaultTrailingLoadStateAdapter
 import com.bytedance.douyin.core.data.repository.refreshloadmore.LoadState
 import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.OnRepositoryLoadMoreListener
-import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshLoadMoreRepository
-import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshLoadMoreRepositoryOwner
+import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshRepository
+import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshRepositoryOwner
 import com.bytedance.douyin.core.designsystem.util.createAppListStateView
 import com.bytedance.douyin.core.designsystem.util.toErrorMessage
 import com.chad.library.adapter4.BaseQuickAdapter
@@ -117,9 +117,9 @@ abstract class BaseRefreshLoadMoreHelper<RefreshLayout>(
         refreshLayout: RefreshLayout?,
         helper: QuickAdapterHelper?,
     ) {
-        if (viewModel is RefreshLoadMoreRepositoryOwner) {
+        if (viewModel is RefreshRepositoryOwner) {
             lifecycleOwner.lifecycleScope.launch {
-                viewModel.onRefreshLoadMoreRepository().loadState.flowWithLifecycle(lifecycleOwner.lifecycle)
+                viewModel.onRefreshRepository().loadState.flowWithLifecycle(lifecycleOwner.lifecycle)
                     .collect { loadState ->
                         onLoadStateCollect(adapter, refreshLayout, helper, loadState)
                     }
@@ -207,11 +207,11 @@ abstract class BaseRefreshLoadMoreHelper<RefreshLayout>(
     }
 
     private fun refresh() {
-        refreshAndLoadRepositoryFunInvoke(viewModel) { this.refresh() }
+        refreshRepositoryFunInvoke(viewModel) { this.refresh() }
     }
 
     private fun load() {
-        refreshAndLoadRepositoryFunInvoke(viewModel) {
+        refreshRepositoryFunInvoke(viewModel) {
             if (this is OnRepositoryLoadMoreListener) this.load()
             else Log.e(
                 "RefreshAndLoadHelper",
@@ -221,7 +221,7 @@ abstract class BaseRefreshLoadMoreHelper<RefreshLayout>(
     }
 
     private fun loadRetry() {
-        refreshAndLoadRepositoryFunInvoke(viewModel) {
+        refreshRepositoryFunInvoke(viewModel) {
             if (this is OnRepositoryLoadMoreListener) this.loadRetry()
             else Log.e(
                 "RefreshAndLoadHelper",
@@ -230,13 +230,13 @@ abstract class BaseRefreshLoadMoreHelper<RefreshLayout>(
         }
     }
 
-    private fun refreshAndLoadRepositoryFunInvoke(
+    private fun refreshRepositoryFunInvoke(
         viewModel: ViewModel,
-        function: suspend RefreshLoadMoreRepository<*>.() -> Unit,
+        function: suspend RefreshRepository<*>.() -> Unit,
     ) {
-        if (viewModel is RefreshLoadMoreRepositoryOwner) {
+        if (viewModel is RefreshRepositoryOwner) {
             viewModel.viewModelScope.launch {
-                function(viewModel.onRefreshLoadMoreRepository())
+                function(viewModel.onRefreshRepository())
             }
         } else {
             Log.e(

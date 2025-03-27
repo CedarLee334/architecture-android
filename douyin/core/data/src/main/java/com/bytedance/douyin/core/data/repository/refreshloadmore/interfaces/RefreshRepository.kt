@@ -15,7 +15,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
  * createTime 2024/11/8 09:32
  */
 @Suppress("KDocUnresolvedReference")
-interface RefreshLoadMoreRepository<Value : Any> : OnRepositoryRefreshListener {
+// 刷新仓库
+interface RefreshRepository<Value : Any> : OnRepositoryRefreshListener {
     val loadState: MutableStateFlow<LoadState?>
     val result: Flow<List<Value>?>
 }
+
+// 刷新、加载仓库
+interface RefreshLoadMoreRepository<Value : Any> : RefreshRepository<Value>,
+    OnRepositoryLoadMoreListener

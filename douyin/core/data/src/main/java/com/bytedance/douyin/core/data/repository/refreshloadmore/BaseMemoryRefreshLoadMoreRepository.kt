@@ -1,7 +1,7 @@
 package com.bytedance.douyin.core.data.repository.refreshloadmore
 
-import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.OnRepositoryLoadMoreListener
 import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshLoadMoreRepository
+import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,14 +10,16 @@ import kotlinx.coroutines.flow.update
 import java.util.UUID
 
 /**
- * 描述：[RefreshLoadMoreRepository]-内存-通用实现
+ * 描述：[RefreshRepository]-内存-通用实现
  * 说明：因为是通用功能类，所以实现了全部的刷新、加载的功能。
+ * -如果只有刷新功能，也需要实现此，加载功能通过[BaseRefreshLoadMoreHelper]子类控制关闭。
  *
  * @author zhangrq
  * createTime 2024/9/14 下午2:34
  */
+@Suppress("KDocUnresolvedReference")
 abstract class BaseMemoryRefreshLoadMoreRepository<Key : Any?, Value : Any>(private val initKey: Key) :
-    RefreshLoadMoreRepository<Value>, OnRepositoryLoadMoreListener {
+    RefreshLoadMoreRepository<Value> {
     // 用于强制更新，当keyFlow值相同时，是不会进行通知的，所以需要强制更新。
     private val forceUpdateFlow = MutableStateFlow("")
     private val keyFlow = MutableStateFlow(initKey)

@@ -38,4 +38,4 @@ fun <T> BaseNetworkModel<T>.toRuleSuccess(): BaseNetworkModel<T> {
     }
     return this
 }
-// 说明：网络成功-全部数据。则不需要调用方法，直接返回即可。
+// 网络成功-全部数据。则不需要调用此转换方法，直接返回即可。

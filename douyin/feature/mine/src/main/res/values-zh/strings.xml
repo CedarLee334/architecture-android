@@ -3,5 +3,5 @@
     <string name="douyin_feature_mine_open_end_drawer_title">打开End抽屉</string>
     <string name="douyin_feature_mine_logout_title">退出登录</string>
     <string name="douyin_feature_mine_content">MineFragment</string>
-    <string name="douyin_feature_mine_dynamic_colors_switch_text">用动态颜色（Android13+支持）：</string>
+    <string name="douyin_feature_mine_dynamic_colors_switch_text">用动态颜色（Android12+支持）：</string>
 </resources>

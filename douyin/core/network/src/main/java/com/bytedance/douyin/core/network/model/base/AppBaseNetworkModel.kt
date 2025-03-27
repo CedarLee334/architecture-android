@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * createTime 2024/8/29 下午4:53
  */
 @Serializable
-data class AppNetworkModel<T>(
+data class AppBaseNetworkModel<T>(
     val errorCode: Int,
     val errorMsg: String? = null,
     val data: T? = null,

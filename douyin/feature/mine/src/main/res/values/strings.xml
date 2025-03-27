@@ -3,5 +3,5 @@
     <string name="douyin_feature_mine_open_end_drawer_title">Open End Drawer</string>
     <string name="douyin_feature_mine_logout_title">Logout</string>
     <string name="douyin_feature_mine_content">MineFragment</string>
-    <string name="douyin_feature_mine_dynamic_colors_switch_text">Use Dynamic Color(Android13+ Support):</string>
+    <string name="douyin_feature_mine_dynamic_colors_switch_text">Use Dynamic Color(Android12+ Support):</string>
 </resources>

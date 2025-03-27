@@ -5,7 +5,7 @@ import com.bytedance.core.model.BaseDiffItem
 import com.bytedance.douyin.core.architecture.app.AppViewModel
 import com.bytedance.douyin.core.architecture.util.requestAsyncSingleOnlyHint
 import com.bytedance.douyin.core.architecture.util.requestAsyncSingleShowAllState
-import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshLoadMoreRepositoryOwner
+import com.bytedance.douyin.core.data.repository.refreshloadmore.interfaces.RefreshRepositoryOwner
 import com.bytedance.douyin.shop.core.data.repository.interfaces.ShopRepository
 import com.bytedance.douyin.shop.core.model.Shop
 import com.bytedance.douyin.shop.core.model.ShopButton
@@ -24,9 +24,9 @@ import com.bytedance.douyin.shop.feature.shop.ui.ShopUiState as UiState
 @HiltViewModel
 class ShopViewModel @Inject constructor(
     private val shopRepository: ShopRepository,
-) : AppViewModel<UiState>(), RefreshLoadMoreRepositoryOwner {
+) : AppViewModel<UiState>(), RefreshRepositoryOwner {
 
-    override fun onRefreshLoadMoreRepository() = shopRepository
+    override fun onRefreshRepository() = shopRepository
 
     override val uiStateInitialValue: UiState = UiState()
 
